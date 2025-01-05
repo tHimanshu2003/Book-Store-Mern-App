@@ -17,9 +17,14 @@ const orderSchema = new mongoose.Schema({
         country: String,
         state: String,
         zipcode: String,
+        street: String,
     },
     phone: {
         type: Number,
+        required: true,
+    },
+    deliveryDate: {
+        type: Date,
         required: true,
     },
     productIds:[

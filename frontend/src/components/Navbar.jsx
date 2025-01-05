@@ -86,9 +86,9 @@ const Navbar = () => {
                         }
                     </div>
                     
-                    <button className="hidden sm:block">
+                    {/* <button className="hidden sm:block">
                         <HiOutlineHeart className="size-6" />
-                    </button>
+                    </button> */}
 
                     <Link to="/cart" className="bg-primary p-1 sm:px-6 px-2 flex items-center rounded-sm">
                         <HiOutlineShoppingCart className='' />

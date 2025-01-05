@@ -28,16 +28,20 @@ const CheckoutPage = () => {
             name: data.name,
             email: currentUser?.email,
             address: {
+                street: data.address,
                 city: data.city,
                 country: data.country,
                 state: data.state,
                 zipcode: data.zipcode
         
             },
+            deliveryDate: data.delivery_date,
             phone: data.phone,
             productIds: cartItems.map(item => item?._id),
             totalPrice: totalPrice,
         }
+
+        console.log(newOrder)
         
         try {
             await createOrder(newOrder).unwrap();
@@ -117,6 +121,18 @@ const CheckoutPage = () => {
                                             </div>
 
                                             <div className="md:col-span-2">
+                                                <label htmlFor="delivery_date">Delivery Date</label>
+                                                <input
+                                                    {...register("delivery_date", { required: true })}
+                                                    type="date"
+                                                    // minimum date after a day from today
+                                                    min={new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString().split("T")[0]}
+                                                    name="delivery_date" id="delivery_date" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="" />
+                                            </div>
+
+                                            
+
+                                            <div className="md:col-span-2">
                                                 <label htmlFor="country">Country / region</label>
                                                 <div className="h-10 bg-gray-50 flex border border-gray-200 rounded items-center mt-1">
                                                     <input
@@ -152,7 +168,7 @@ const CheckoutPage = () => {
                                                 </div>
                                             </div>
 
-                                            <div className="md:col-span-1">
+                                            <div className="md:col-span-2">
                                                 <label htmlFor="zipcode">Zipcode</label>
                                                 <input
                                                     {...register("zipcode", { required: true })}

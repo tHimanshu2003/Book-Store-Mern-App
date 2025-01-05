@@ -57,7 +57,7 @@ const CartPage = () => {
                                                                 <h3>
                                                                     <Link to='/'>{product?.title}</Link>
                                                                 </h3>
-                                                                <p className="sm:ml-4">${product?.newPrice}</p>
+                                                                <p className="sm:ml-4">₹{product?.newPrice}</p>
                                                             </div>
                                                             <p className="mt-1 text-sm text-gray-500 capitalize"><strong>Category: </strong>{product?.category}</p>
                                                         </div>
@@ -91,16 +91,22 @@ const CartPage = () => {
                 <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                     <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
-                        <p>${totalPrice ? totalPrice : 0}</p>
+                        <p>₹{totalPrice ? totalPrice : 0}</p>
                     </div>
                     <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                     <div className="mt-6">
-                        <Link
-                            to="/checkout"
-                            className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                        >
-                            Checkout
-                        </Link>
+                        {
+                            cartItems.length > 0 && (
+                                <Link to="/checkout">
+                                    <button
+                                        type="button"
+                                        className="w-full flex justify-center bg-indigo-600 border border-transparent rounded-md py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    >
+                                        Proceed to Checkout
+                                    </button>
+                                </Link>
+                            )
+                        }
                     </div>
                     <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <Link to="/">
