@@ -1,5 +1,5 @@
 const getBaseUrl = () => {
-    return "http://localhost:5000"
+    return process.env.BACKEND_URL || "http://localhost:5000"
 }
 
 export default getBaseUrl;
